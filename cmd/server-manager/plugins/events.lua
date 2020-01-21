@@ -84,6 +84,10 @@ function weatherAPI(raceConfig, serverOpts, apiKey)
 
         -- ambient temp, from Kelvin to Degrees Celcius
         weather["BaseTemperatureAmbient"] = math.floor(weatherData["main"]["temp"] - 273)
+        -- Assetto Corsa don't like temp < 0
+        if weather["BaseTemperatureRoad"] < 0 then
+            weather["BaseTemperatureRoad"] = 0
+        end
         weather["VariationAmbient"] = 0
 
         -- road temp
